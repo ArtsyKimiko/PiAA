@@ -35,7 +35,7 @@ void print(int tab[], int size)
 }
 int main()
 {
-    int size= 21500000;
+    int size= 40000000;
     int *tab=new int[size]; // for large arrays, it is better to allocate memory dynamically
     srand(time(NULL));
     for(int i=0;i<size;i++)

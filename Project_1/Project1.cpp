@@ -35,11 +35,11 @@ void print(int tab[], int size)
 }
 int main()
 {
-    int size= 21500000;
+    int size= 1000000;
     int tab[size];
     srand(time(NULL));
     for(int i=0;i<size;i++)
-        tab[i]=rand()%100;
+        tab[i]=rand()%10000;
 
     //cout<<"Before sorting: "<<endl;
     //print(tab,size);
