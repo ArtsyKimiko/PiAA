@@ -36,7 +36,7 @@ void print(int tab[], int size)
 int main()
 {
     int size= 21500000;
-    int tab[size];
+    int *tab=new int[size]; // for large arrays, it is better to allocate memory dynamically
     srand(time(NULL));
     for(int i=0;i<size;i++)
         tab[i]=rand()%100;
@@ -58,5 +58,7 @@ int main()
     //print(tab,size);
 
     cout <<size<<"\t"<<duration.count()<<endl;
+
+    delete[] tab;
     return 0;
 }
