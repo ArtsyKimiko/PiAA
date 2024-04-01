@@ -35,14 +35,23 @@ void print(int tab[], int size)
 }
 int main()
 {
-    int size= 1000000;
-    int tab[size];
+    cout<<"Enter the size of the array: ";
+    int size;
+    cin>>size;
+    int *tab = new int[size];
     srand(time(NULL));
     for(int i=0;i<size;i++)
-        tab[i]=rand()%10000;
+        tab[i]=rand()%size;
 
-    //cout<<"Before sorting: "<<endl;
-    //print(tab,size);
+    cout<<"Choose option: "<<endl
+        <<"1. Before sorting"<<endl
+        <<"2. After sorting"<<endl
+        <<"3. Sorting time"<<endl;
+    int option;
+    cin>>option;
+
+    if(option==1)
+        print(tab,size);
 
     auto start = chrono::high_resolution_clock::now();
 
@@ -54,9 +63,15 @@ int main()
     auto stop = chrono::high_resolution_clock::now();
     auto duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
 
-    //cout<<"After sorting: "<<endl;
-    //print(tab,size);
+    if(option==2)
+        print(tab,size);
 
-    cout <<size<<"\t"<<duration.count()<<endl;
+    if(option==3)
+        cout<<duration.count()<<" milliseconds"<<endl;
+
+    if(option!=1&&option!=2&&option!=3)
+        cout<<"Wrong option"<<endl;
+        
+    delete [] tab;
     return 0;
 }
