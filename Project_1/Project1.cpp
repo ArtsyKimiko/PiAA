@@ -40,9 +40,9 @@ void print(Packet tab[], int size)
 int main()
 {
     int option=1;
-    Packet *tab = nullptr;
-    Packet *tab2 = nullptr;
-    int size = 0;
+    Packet *tab=nullptr;
+    Packet *tab2=nullptr;
+    int size=0;
 
     while(option!=0)
     {
@@ -59,13 +59,13 @@ int main()
             {
                 cout<<"Enter the size of the array: ";
                 cin>>size;
-                tab = new Packet[size];
+                tab=new Packet[size];
                 srand(time(NULL));
                 for(int i=0;i<size;i++)
                     tab[i].priority=rand()%size;
-                tab2 = new Packet[size];
+                tab2=new Packet[size];
                 for (int i=0;i<size;i++)
-                    tab2[i].priority = tab[i].priority;
+                    tab2[i].priority=tab[i].priority;
                 break;
             }
             
@@ -100,7 +100,7 @@ int main()
 
             default: 
             {
-                cout << "Wrong option" << endl;
+                cout<<"Wrong option"<<endl;
                 option=0;
                 break;
             }
