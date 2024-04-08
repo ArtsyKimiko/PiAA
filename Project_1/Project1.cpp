@@ -4,7 +4,8 @@
 #include <ctime>
 using namespace std;
 
-struct Packet{
+struct Packet
+{
     int data;
     int priority;
 };
@@ -42,15 +43,12 @@ int main()
     int option=1;
     Packet *tab=nullptr;
     Packet *tab2=nullptr;
-    int size=0;
+    int size=10;
 
     while(option!=0)
     {
-        cout<<"Choose option: "<<endl
-            <<"1. Size of the array"<<endl
-            <<"2. Before sorting"<<endl
-            <<"3. After sorting"<<endl
-            <<"4. Sorting time"<<endl;
+        cout<<"Choose option: "<<endl<<"1. Size of the array"<<endl<<"2. Before sorting"<<endl
+            <<"3. After sorting"<<endl<<"4. Sorting time"<<endl;
         cin>>option;
         
         switch(option)
