@@ -9,17 +9,21 @@ using namespace std;
 
 int main()
 {
-    vector<int> arr = {12, 11, 13, 5, 6, 7};
-    int n = arr.size();
+    int size = 7;
+    int arr[7] = { 12, 11, 13, 5, 6, 7, 1 };
+    //int *arr = new int[size];
+    int low = 0;
+    int high = size - 1;
+
     MergeSort m;
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < size; i++)
         cout << arr[i] << " ";
     cout << endl;
 
-    m.mergeSort(arr, 0, n - 1);
+    m.mergeSort(arr, size, low, high);
 
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < size; i++)
         cout << arr[i] << " ";
     cout << endl;
 
