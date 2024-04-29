@@ -1,7 +1,4 @@
 #include <iostream>
+#include "BucketSort.hpp"
 using namespace std;
 
-class QuickSort
-{
-    void sort();
-};

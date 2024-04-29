@@ -1,7 +1,4 @@
 #include <iostream>
+#include "IntroSort.hpp"
 using namespace std;
 
-class QuickSort
-{
-    void sort();
-};
