@@ -25,15 +25,14 @@ public:
 
     void mergeSort(int low, int high)
     {
-        
         if (low < high)
         {
-            int middle = low + high / 2;
+            int middle = (low + high) / 2;
 
-            mergeSort(low, middle);
-            mergeSort(middle + 1, high);
+            mergeSort(low, middle); // sort [low, middle]
+            mergeSort(middle + 1, high); // sort (middle, high], in other words [middle + 1, high]
 
-            merge(low, high, middle+1);
+            merge(low, high, middle);
         }
         return;
     }
@@ -74,5 +73,6 @@ public:
     {
         for(int i = 0; i<size; i++)
             cout<<arr[i]<<" ";
+        cout << '\n';
     }
 };

@@ -10,10 +10,10 @@ using namespace std;
 
 int main()
 {     
-    MergeSort *ms = new MergeSort();
-    ms->printData();
-    ms->mergeSort(0, 9);
-    ms->printData();
+    // MergeSort *ms = new MergeSort();
+    // ms->printData();
+    // ms->mergeSort(0, 9);
+    // ms->printData();
   
     QuickSort *qs = new QuickSort();
     qs->printData();
