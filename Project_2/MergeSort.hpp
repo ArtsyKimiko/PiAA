@@ -4,24 +4,40 @@ using namespace std;
 
 class MergeSort 
 {   
+    int *arr;
+    int size;
 public:    
-    MergeSort() {}
+    MergeSort() {
+        arr = new int[10];
+        arr[0] = 10;
+        arr[1] = 9;
+        arr[2] = 8;
+        arr[3] = 7;
+        arr[4] = 6;
+        arr[5] = 5;
+        arr[6] = 4;
+        arr[7] = 3;
+        arr[8] = 2;
+        arr[9] = 1;
+        size = 10;
+    }
     ~MergeSort() {}
 
-    void mergeSort(int arr[], int size, int low, int high)
+    void mergeSort(int low, int high)
     {
+        
         if (low < high)
         {
             int middle = low + high / 2;
 
-            mergeSort(arr, size , low, middle);
-            mergeSort(arr, size, middle + 1, high);
+            mergeSort(low, middle);
+            mergeSort(middle + 1, high);
 
-            merge(arr, size, low, high, middle);
+            merge(low, high, middle+1);
         }
         return;
     }
-    void merge(int arr[], int size, int low, int high, int middle)
+    void merge(int low, int high, int middle)
     {
         int i = low, j = middle + 1, k = low;
         int *temp = new int[size];
@@ -51,7 +67,12 @@ public:
             j++;
             k++;
         }
-        for(int i = low; i<=high; i++)
+        for(int i = low; i< k; i++)
             arr[i] = temp[i];
+    }
+    void printData()
+    {
+        for(int i = 0; i<size; i++)
+            cout<<arr[i]<<" ";
     }
 };
