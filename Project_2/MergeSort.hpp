@@ -3,43 +3,28 @@
 using namespace std;
 
 class MergeSort 
-{   
-    int *arr;
-    int size;
+{
 public:    
-    MergeSort() {
-        arr = new int[10];
-        arr[0] = 10;
-        arr[1] = 9;
-        arr[2] = 8;
-        arr[3] = 7;
-        arr[4] = 6;
-        arr[5] = 5;
-        arr[6] = 4;
-        arr[7] = 3;
-        arr[8] = 2;
-        arr[9] = 1;
-        size = 10;
-    }
+    MergeSort() {}
     ~MergeSort() {}
 
-    void mergeSort(int low, int high)
+    void mergeSort(double arr[], int size, int low, int high)
     {
         if (low < high)
         {
             int middle = (low + high) / 2;
 
-            mergeSort(low, middle); // sort [low, middle]
-            mergeSort(middle + 1, high); // sort (middle, high], in other words [middle + 1, high]
+            mergeSort(arr, size, low, middle);
+            mergeSort(arr, size, middle + 1, high);
 
-            merge(low, high, middle);
+            merge(arr, size, low, high, middle);
         }
         return;
     }
-    void merge(int low, int high, int middle)
+    void merge(double arr[], int size, int low, int high, int middle)
     {
         int i = low, j = middle + 1, k = low;
-        int *temp = new int[size];
+        double *temp = new double[size];
         while(i<=middle && j<=high)
         {
             if(arr[i] < arr[j])
@@ -69,7 +54,7 @@ public:
         for(int i = low; i< k; i++)
             arr[i] = temp[i];
     }
-    void printData()
+    void printData(double arr[], int size)
     {
         for(int i = 0; i < size; i++)
             cout << arr[i] << " ";

@@ -3,26 +3,22 @@ using namespace std;
 
 class BucketSort
 {
-    int *arr;
-    int size;
 public:
-    BucketSort() {}
-    ~BucketSort() {}
-
-    void bucketSort()
+    BucketSort(double arr[], int size) 
     {
-        int max = arr[0];
+        double max = arr[0];
         for(int i = 1; i < size; i++)
-        {
             if(arr[i] > max)
                 max = arr[i];
-        }
-        int *bucket = new int[max + 1];
-        for(int i = 0; i <= max; i++)
+        
+        int bucketSize = static_cast<int>(max) + 1;
+        double *bucket = new double[bucketSize];
+
+        for(int i = 0; i < bucketSize; i++)
             bucket[i] = 0;
         for(int i = 0; i < size; i++)
-            bucket[arr[i]]++;
-        for(int i = 0, j = 0; i <= max; i++)
+            bucket[static_cast<int>(arr[i])]++;
+        for(int i = 0, j = 0; i < bucketSize; i++)
         {
             while(bucket[i] > 0)
             {
@@ -31,7 +27,9 @@ public:
             }
         }
     }
-    void printData()
+    ~BucketSort() {}
+
+    void printData(double arr[], int size)
     {
         for(int i = 0; i < size; i++)
             cout << arr[i] << " ";

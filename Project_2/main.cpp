@@ -16,33 +16,27 @@ int main()
         return 1;
 
     ReadFile *rf = new ReadFile(input);
-    rf->printData(10);
-   
-    // MergeSort *ms = new MergeSort();
-    // ms->printData();
-    // ms->mergeSort(0, 9);
-    // ms->printData();
+    input.close();
+    int size = 10;
+    double *arr = new double[size];
+
+    for(int i = 0; i < size; i++)
+        arr[i] = rf->array[i];
+
+    BucketSort *bs = new BucketSort(arr, size);
+    delete bs;
+
+    IntroSort *is = new IntroSort(arr, size);
+    delete is;
+
+    MergeSort *ms = new MergeSort();
+    ms->mergeSort(rf->array, size, 0, size);
+    delete ms;
   
-    QuickSort *qs = new QuickSort();
-    qs->printData();
-    qs->quickSort();
-    qs->printData();
-    
-    // IntroSort *is = new IntroSort();
-    // is->printData();
-    // is->introSort();
-    // is->printData();
-
-    // BucketSort *bs = new BucketSort();
-    // bs->printData();
-    // bs->bucketSort();
-    // bs->printData();
-
-    delete rf;
-    // delete ms;
+    QuickSort *qs = new QuickSort(arr , size);
     delete qs;
-    // delete is;
-    // delete bs;
-
+    
+    delete rf;
+    
     return 0;
 }

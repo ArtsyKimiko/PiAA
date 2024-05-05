@@ -6,16 +6,12 @@ using namespace std;
 class ReadFile
 {
     int size;
-    double *array;
 public:
+    double *array;
+    
     ReadFile(ifstream &input);
     ~ReadFile();
     void readData(ifstream &input);
-    void printData(int s) 
-    {
-        for (int i = 0; i < s; i++)
-            cout << array[i] << endl;
-    }
 };
 ReadFile::ReadFile(ifstream &input) 
 {
