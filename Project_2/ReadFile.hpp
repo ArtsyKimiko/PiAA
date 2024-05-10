@@ -7,8 +7,10 @@ class ReadFile
 {
     int size;
 public:
-    double *array;
-    ReadFile(ifstream &input, int size_to_test=0)
+    double *array = nullptr;
+    int real_size;
+
+    ReadFile(ifstream &input, int size_to_test)
     {
         array = nullptr;
         readData(input, size_to_test);
@@ -20,6 +22,10 @@ public:
     int fileSize()
     {
         return size;
+    }
+    int testSize()
+    {
+        return real_size;
     }
     void readData(ifstream &input, int size_to_test)
     {
@@ -42,8 +48,13 @@ public:
 
         array = new double[size];
 
-        if(size_to_test == 0)
+        if(size_to_test == 0 || size_to_test > size)
+        {
             size_to_test=size;
+            real_size=size;
+        }
+        else
+            real_size=size_to_test;   
         for (int i = 0; i < size_to_test; i++) 
         {
             getline(input, line);
