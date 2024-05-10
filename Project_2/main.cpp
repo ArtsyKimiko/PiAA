@@ -1,11 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include <vector>
-#include "MergeSort.hpp"
-#include "QuickSort.hpp"
-#include "IntroSort.hpp"
-#include "BucketSort.hpp"
-#include "ReadFile.hpp"
+#include "Tests.hpp"
 
 using namespace std;
 
@@ -14,29 +9,16 @@ int main()
     ifstream input("projekt2_dane.csv");
     if (!input.is_open())
         return 1;
-
-    ReadFile *rf = new ReadFile(input);
+    ReadFile *read = new ReadFile(input);
+    
+    int size[5] = {10000, 100000, 500000, 1000000, read->fileSize()};
+    for(int i = 0; i < 5; i++)
+    {
+        Test *t = new Test(input, size[i]);
+        delete t;
+    }
     input.close();
-    int size = 10;
-    double *arr = new double[size];
 
-    for(int i = 0; i < size; i++)
-        arr[i] = rf->array[i];
-
-    BucketSort *bs = new BucketSort(arr, size);
-    delete bs;
-
-    IntroSort *is = new IntroSort(arr, size);
-    delete is;
-
-    MergeSort *ms = new MergeSort();
-    ms->mergeSort(rf->array, size, 0, size);
-    delete ms;
-  
-    QuickSort *qs = new QuickSort(arr , size);
-    delete qs;
-    
-    delete rf;
-    
+    delete read;
     return 0;
 }

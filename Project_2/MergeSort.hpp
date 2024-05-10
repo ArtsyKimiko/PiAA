@@ -4,9 +4,18 @@ using namespace std;
 
 class MergeSort 
 {
+    double *temp;
 public:    
-    MergeSort() {}
-    ~MergeSort() {}
+    MergeSort(double arr[], int size) 
+    {
+        int low = 0, high = size;
+        temp = new double[size];
+        mergeSort(arr, size, low, high);
+    }
+    ~MergeSort() 
+    {
+        delete[] temp;
+    }
 
     void mergeSort(double arr[], int size, int low, int high)
     {
@@ -24,7 +33,6 @@ public:
     void merge(double arr[], int size, int low, int high, int middle)
     {
         int i = low, j = middle + 1, k = low;
-        double *temp = new double[size];
         while(i<=middle && j<=high)
         {
             if(arr[i] < arr[j])
