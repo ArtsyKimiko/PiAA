@@ -8,7 +8,7 @@ class MergeSort
 public:    
     MergeSort(double arr[], int size) 
     {
-        int low = 0, high = size;
+        int low = 0, high = size-1;
         temp = new double[size];
         mergeSort(arr, size, low, high);
     }

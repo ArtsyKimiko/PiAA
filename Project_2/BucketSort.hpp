@@ -19,13 +19,11 @@ public:
         for(int i = 0; i < size; i++)
             bucket[static_cast<int>(arr[i])]++;
         for(int i = 0, j = 0; i < bucketSize; i++)
-        {
             while(bucket[i] > 0)
             {
                 arr[j++] = i;
                 bucket[i]--;
             }
-        }
     }
     ~BucketSort() {}
 

@@ -2,18 +2,19 @@
 #include <fstream>
 #include <string>
 using namespace std;
+// read file x; x.array[i] = 434556678;
 
 class ReadFile
 {
     int size;
+    string line;
 public:
-    double *array = nullptr;
-    int real_size;
+    double *array;
 
     ReadFile(ifstream &input, int size_to_test)
     {
-        array = nullptr;
-        readData(input, size_to_test);
+        array=nullptr;
+        checkData(input);
     }
     ~ReadFile()
     {
@@ -23,13 +24,8 @@ public:
     {
         return size;
     }
-    int testSize()
+    void checkData(ifstream &input)
     {
-        return real_size;
-    }
-    void readData(ifstream &input, int size_to_test)
-    {
-        string line;
         size = 0;
         while (getline(input, line)) 
         {
@@ -45,16 +41,12 @@ public:
             
         input.clear();
         input.seekg(0, ios::beg);  
-
-        array = new double[size];
-
+    }
+    void readData(ifstream &input, int size_to_test)
+    {
         if(size_to_test == 0 || size_to_test > size)
-        {
-            size_to_test=size;
-            real_size=size;
-        }
-        else
-            real_size=size_to_test;   
+            size_to_test=size;  
+        array = new double[size_to_test];
         for (int i = 0; i < size_to_test; i++) 
         {
             getline(input, line);

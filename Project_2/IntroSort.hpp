@@ -7,6 +7,7 @@ class IntroSort
 public:
     IntroSort(double arr[], int size) 
     {
+        srand(time(NULL));
         int maxdepth = 2 * log(size);
         introsort_recursion(arr, 0, size - 1, maxdepth);
     }
