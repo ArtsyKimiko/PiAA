@@ -15,7 +15,7 @@ void Game::playGame()
         cout << "Nieprawidlowy znak, wprowadz jeszcze raz." << endl;
         cin >> turn;
     }
-    Player currentPlayer = turn == 1 ? HUMAN : COMPUTER;
+    Player currentPlayer = turn == 1 ? HUMAN : BOT;
 
     while (true) 
     {
@@ -32,8 +32,8 @@ void Game::playGame()
         } 
         else 
         {
-            computerMove();
-            if (checkWin(COMPUTER)) 
+            botMove();
+            if (checkWin(BOT)) 
             {
                 printBoard();
                 cout << "Zostales pokonany." << endl;
@@ -46,7 +46,7 @@ void Game::playGame()
             cout << "Remis!" << endl;
             break;
         }
-        currentPlayer = (currentPlayer == HUMAN) ? COMPUTER : HUMAN;
+        currentPlayer = (currentPlayer == HUMAN) ? BOT : HUMAN;
     }
 }
 
@@ -58,7 +58,7 @@ void Game::printBoard()
         {
             if (board[i][j] == HUMAN)
                 cout << 'X';
-            else if (board[i][j] == COMPUTER) 
+            else if (board[i][j] == BOT) 
                 cout << 'O';
             else 
                 cout << '.';
@@ -69,7 +69,7 @@ void Game::printBoard()
     cout << endl;
 }
 
-bool Game::isDraw() // sprawdza czy zostały jakieś wolne pola - jeśli nie to remis
+bool Game::isDraw()
 {
     for (int i = 0; i < size; ++i)
         for (int j = 0; j < size; ++j)
@@ -97,15 +97,15 @@ void Game::playerMove()
     }
 }
 
-void Game::computerMove() 
+void Game::botMove() 
 {
-    Move bestMove = minMax(0, COMPUTER, NEG_INF, INF, 6); 
-    board[bestMove.row][bestMove.col] = COMPUTER;
+    Move bestMove = minMax(0, BOT, NEG_INF, INF, 6); 
+    board[bestMove.row][bestMove.col] = BOT;
 }
 
 Move Game::minMax(int depth, Player player, int alpha, int beta, int maxDepth) 
 {
-    if (checkWin(COMPUTER)) 
+    if (checkWin(BOT)) 
         return { -1, -1, 10 - depth };
     if (checkWin(HUMAN)) 
         return { -1, -1, depth - 10 };
@@ -113,18 +113,18 @@ Move Game::minMax(int depth, Player player, int alpha, int beta, int maxDepth)
         return { -1, -1, 0 };
     
     vector<Move> moves; 
-    for (int i = 0; i < size; ++i) // sprawdza wszystkie możliwe ruchy
+    for (int i = 0; i < size; ++i)
         for (int j = 0; j < size; ++j)
             if (board[i][j] == NONE) 
                 moves.push_back({ i, j, 0 }); 
 
     Move bestMove;
-    if (player == COMPUTER) 
+    if (player == BOT) 
     {
         int bestVal = NEG_INF;
         for (auto& move : moves) 
         {
-            board[move.row][move.col] = COMPUTER;
+            board[move.row][move.col] = BOT;
             move.score = minMax(depth + 1, HUMAN, alpha, beta, maxDepth).score;
             board[move.row][move.col] = NONE;
             if (move.score > bestVal) 
@@ -143,7 +143,7 @@ Move Game::minMax(int depth, Player player, int alpha, int beta, int maxDepth)
         for (auto& move : moves) 
         {
             board[move.row][move.col] = HUMAN;
-            move.score = minMax(depth + 1, COMPUTER, alpha, beta, maxDepth).score;
+            move.score = minMax(depth + 1, BOT, alpha, beta, maxDepth).score;
             board[move.row][move.col] = NONE;
             if (move.score < bestVal) 
             {

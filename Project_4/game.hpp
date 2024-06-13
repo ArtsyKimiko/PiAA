@@ -7,7 +7,7 @@ using namespace std;
 const int INF = numeric_limits<int>::max();
 const int NEG_INF = numeric_limits<int>::min(); 
 
-enum Player { HUMAN, COMPUTER, NONE };
+enum Player { HUMAN, BOT, NONE };
 
 struct Move 
 {
@@ -23,7 +23,7 @@ private:
     void printBoard();
     bool isDraw();
     void playerMove();
-    void computerMove();
+    void botMove();
     Move minMax(int depth, Player player, int alpha, int beta, int maxDepth);
     bool checkWin(Player player);
     bool checkLine(int startRow, int startCol, int stepRow, int stepCol, Player player);
